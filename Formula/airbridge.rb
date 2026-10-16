@@ -39,6 +39,9 @@ class Airbridge < Formula
     ENV["AIRBRIDGE_PORT"] = port.to_s
     ENV["AIRBRIDGE_BACKEND"] = "fake"
     ENV["AIRBRIDGE_PRINTING"] = "off"
+    # Serve and announce on loopback only: the test must not show a demo
+    # scanner to every Mac on the network.
+    ENV["AIRBRIDGE_INTERFACES"] = "lo"
     pid = spawn bin/"airbridge"
     begin
       sleep 3
